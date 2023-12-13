@@ -1,0 +1,13 @@
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
+  `birthdate` date NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `province` varchar(50) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `other_gender` varchar(50) DEFAULT NULL,
+  `newsletter` tinyint(1) NOT NULL,
+  `regulamin` tinyint(1) NOT NULL
+)

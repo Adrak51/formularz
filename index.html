@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Przykładowy Formularz</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/jquery.validate.js"></script>
+        <script src="js/signup-form.js"></script>
+        <script src="js/messages_es.js"></script>   
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    </head>
+    <body style="font-weight: bold; background-color: lightcyan;">
+        <div class="container" style="background-color: lightblue; padding: 40px; width: 1000px;">
+            <h1 style="text-align: center;">Formularz</h1>
+            <form id="form" action="send.php" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Imię:</label>
+                    <input type="text" class="w-50 form-control" id="name" name="name" placeholder="Imię" required>
+                </div><br>
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Nazwisko:</label>
+                    <input type="text" class="w-50 form-control" id="surname" name="surname" placeholder="Nazwisko" required>
+                </div><br>
+                <div class="mb-3">
+                    <label for="birthdate" class="form-label">Data urodzenia:</label>
+                    <input type="date" class="w-50 form-control" id="birthdate" name="birthdate" required>
+                </div><br>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Adres email:</label>
+                    <input type="email" class="w-50 form-control" id="email" name="email" placeholder="Adres email" required>
+                </div><br>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Telefon:</label>
+                    <input type="tel" class="w-50 form-control" id="phone" name="phone" placeholder="Numer telefonu" required>
+                </div><br>
+                <div class="mb-3">
+                    <label for="province" class="form-label">Województwo:</label>
+                    <select class="w-50 form-select" id="province" name="province" required>
+                        <option selected value="dolnośląskie">Dolnośląskie</option>
+                        <option value="kujawsko-pomorskie">Kujawsko-Pomorskie</option>
+                        <option value="lubelskie">Lubelskie</option>
+                        <option value="lubuskie">Lubuskie</option>
+                        <option value="łódzkie">Łódzkie</option>
+                        <option value="małopolskie">Małopolskie</option>
+                        <option value="mazowieckie">Mazowieckie</option>
+                        <option value="opolskie">Opolskie</option>
+                        <option value="podkarpackie">Podkarpackie</option>
+                        <option value="podlaskie">Podlaskie</option>
+                        <option value="pomorskie">Pomorskie</option>
+                        <option value="śląskie">Śląskie</option>
+                        <option value="świętokrzyskie">Świętokrzyskie</option>
+                        <option value="warmińsko-mazurskie">Warmińsko-mazurskie</option>
+                        <option value="wielkopolskie">Wielkopolskie</option>
+                        <option value="zachodniopomorskie">Zachodniopomorskie</option>
+                    </select>
+                </div><br>
+                <div class="mb-3">
+                    <label class="form-label" required>Wybierz płeć:</label>
+                    <div class="form-check">
+                        <input checked class="form-check-input" type="radio" name="gender" id="male" value="mężczyzna">
+                        <label class="form-check-label" for="male">
+                            Mężczyzna
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="kobieta">
+                        <label class="form-check-label" for="female">
+                            Kobieta
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="other" value="inna">
+                        <label class="form-check-label" for="other">
+                            Inna
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3" id="otherGenderInput" style="display: none;">
+                    <label for="otherGender" class="form-label">Inna płeć:</label>
+                    <input type="text" class="w-50 form-control" id="otherGender" placeholder="Inna płeć">
+                </div><br>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="newsletter">
+                        <label class="form-check-label" for="newsletter">
+                            Zapisuję się na newsletter!
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="regulamin">
+                        <label class="form-check-label" for="regulamin">
+                            Akceptuję regulamin
+                        </label>
+                    </div>
+                </div><br>
+                <button type="submit" class="btn btn-primary" id="button" disabled>Wyślij formularz!</button>
+            </form>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $('#form').validate();
+            });
+
+            const regulamin = document.getElementById("regulamin");
+            const button = document.getElementById("button");
+            
+            const genderOtherInput = document.getElementById("otherGenderInput");
+            const oRadio = document.getElementById("other");
+            const mRadio = document.getElementById("male");
+            const fRadio = document.getElementById("female");
+
+            mRadio.addEventListener("change", function() {
+                genderOtherInput.style.display = "none";
+            });
+
+            fRadio.addEventListener("change", function() {
+                genderOtherInput.style.display = "none";
+            });
+
+            oRadio.addEventListener("change", function() {
+                genderOtherInput.style.display = "block";
+            });
+            
+            regulamin.addEventListener("change", function() {
+                if (regulamin.checked) {
+                    button.removeAttribute("disabled");
+                } else {
+                    button.setAttribute("disabled", "true");
+                }
+            });
+            
+        </script>
+    </body>
+</html>
